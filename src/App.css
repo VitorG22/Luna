@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+
+
+/* 
+
+:root {
+  --backdropFilter: blur(9px);
+  --background_color: #05161a;
+  --background_color2: #072e33;
+  --color1: #05161a;
+  --color2: #072e33;
+  --color3: #0c7075;
+  --color4: #0f9090;
+  --color5: #6da5c0;
+  --color6: #294d61;
+
+  
+  --textColorNoActive: #294d61;
+  --textColorActive: #0f9090;
+  --textClamp: clamp(0px, 5vh, 2vw);
+  --titleClamp: clamp(.6vw, 7vh, 4vw);
+
+} */
+
+
+
+
+:root {
+  --backdropFilter: blur(9px);
+  --background_color: #06141b;
+  --background_color2: #11212d;
+  --color1: #06141b;
+  --color2: #11212d;
+  --color3: #253745;
+  --color4: #4a5c6a;
+  --color5: #9ba8ab;
+  --color6: #ccd0cf;
+
+  
+  --textColorNoActive: #4a5c6a;
+  --textColorActive: #9ba8ab;
+  --textClamp: clamp(0px, 5vh, 2vw);
+  --titleClamp: clamp(.6vw, 7vh, 4vw);
+
+}
+
+
+
+
+/* 
+:root {
+  --backdropFilter: blur(9px);
+  --background_color: #5e5e5e;
+  --background_color2: rgba(117, 117, 117, 0.35);
+  --color1: #b9b9b9;
+  --color2: #a2a2a2;
+  --color3: #8b8b8b;
+  --color4: #757575;
+  --color5: #5e5e5e;
+
+  
+  --textColorNoActive: #8b8b8b;
+  --textColorActive: #b9b9b9;
+  --textClamp: clamp(0px, 5vh, 2vw);
+  --titleClamp: clamp(.6vw, 7vh, 4vw);
+
+} */ 
+
+
+
+
+@media (max-width: 480px) {
+  .mainContainer {
+
+    background-color: var(--background_color);
+    min-height: 100vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.5vh;
+  }
+}
+
+@media (min-width: 481px) {
+
+  .mainContainer {
+    background-color: var(--background_color);
+    min-height: 100vh;
+
+    display: grid;
+    grid-template:
+      "header header" 1fr "toDo chalendar" 5fr
+    ;
+    gap: 1.5vh;
+  }
+}

@@ -1,0 +1,113 @@
+
+
+
+
+.headerContainer{
+    grid-area: header;
+    display:flex;
+    margin: 2vw;
+    align-items:center;
+    box-sizing: border-box;
+    padding:2vh;
+
+
+    border-radius: 5px;
+    background: var(--background_color2);    
+    backdrop-filter: var(--backdropFilter);
+}
+            
+.headerList{
+    display:flex;
+    flex-direction:row;
+    align-items: end;
+    justify-content:space-evenly;
+    
+    width:100%;
+    
+    list-style:none;
+}
+
+
+.headerList .listItem{
+    display:grid;
+    grid-template:
+    "dia skyIcon"
+    "max min"
+    ;
+    align-items: center;
+    color:var(--textColorActive);
+    gap:2px;
+}
+
+
+
+.skyIcon{
+    display:flex;
+    box-sizing: border-box;
+    grid-area: skyIcon;
+    height: clamp(1px,2rem,3vw);
+}
+.dia{
+    grid-area: dia;
+    font-size: var(--titleClamp);
+}
+.temperaturaMax{
+    grid-area: max;
+    display: flex;
+    flex-direction:row;
+
+    font-size:var(--textClamp);
+    gap:3px;
+    
+}
+
+.arrowUp{
+    height: var(--textClamp);
+    rotate:180deg;
+    fill:rgb(227, 65, 84);    
+}
+.temperaturaMin{
+    grid-area: min;
+    display: flex;
+    flex-direction:row;
+    font-size:var(--textClamp);
+}
+
+.arrowDown{
+    height: var(--textClamp);
+    fill:lightseagreen;
+}
+
+
+
+
+.mainlistItem{
+    display:grid;
+    grid-template:
+    "skyIcon dia dia"
+    "skyIcon max min"
+    ;
+    align-items: center;
+    color:var(--textColorActive);
+}
+
+.mainlistItem .skyIcon{
+    display:flex;
+    box-sizing: border-box;
+    grid-area: skyIcon;
+    height: clamp(15px,4vh,7vw);
+}
+
+.mainlistItem .dia{
+    grid-area: dia;
+    font-size: clamp(.3rem, 1.6rem, 7vw);
+    
+}
+
+.mainlistItem .temperaturaMax{
+    grid-area: max;
+}
+
+.mainlistItem .temperaturaMin{
+    grid-area: min
+}

@@ -1,0 +1,105 @@
+.toDoContainer {
+    grid-area: toDo;
+    margin: 2vw;
+
+
+    border-radius: 5px;
+    background: var(--background_color2);
+    backdrop-filter: var(--backdropFilter);
+    box-sizing: content-box;
+    padding: 2vh 5vw;
+    color: var(--textColorActive);
+
+}
+
+.toDoHeader {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(var(--titleClamp) * 1.1);
+}
+
+.buttonAdd{
+    padding:8px 25px;
+    border-radius: 32px;
+    background: transparent;
+    border: solid var(--color5) 2px;
+    
+    font-weight: bold;
+    color: var(--color6);
+    
+    transition:ease .3s;
+}
+.buttonAdd:hover{
+    border:solid var(--background_color2) 2px;
+    background: var(--color6);
+    color: var(--background_color);
+}
+.buttonAdd:active{
+    border:solid var(--background_color2) 2px;
+    background: var(--color4);
+    color: var(--background_color2);
+}
+
+
+.button {
+    height: 5vh;
+    background: none;
+    border: none;
+}
+
+.buttonIcon {
+    display: flex;
+    height: 3vh;
+}
+
+.toDoList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.toDoList .listItem {
+    color: var(--textColorNoActive);
+    padding: 1vh 4vw;
+    border-radius: 5px;
+    transition: ease .5s;
+    font-size: var(--titleClamp);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.itemDescription {
+    width: 80%;
+    height: 10vh;
+    overflow-y: scroll;
+
+    font-size: var(--textClamp);
+    transition: ease 3s;
+
+    display: none;
+}
+
+.itemDescription::-webkit-scrollbar {
+    width: 0px;
+}
+
+.toDoList .listItem:hover {
+    
+    background: linear-gradient(45deg ,var(--background_color) , transparent);
+    color: var(--textColorActive);
+
+
+}
+
+
+.itemButtons {
+    display: flex;
+    gap: 2vw;
+}
