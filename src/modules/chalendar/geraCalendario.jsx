@@ -1,6 +1,9 @@
 
 
-export function calendarioAnual() {
+
+export function GeraCalendarioAnual() {
+    console.log("gerando Calendario")
+
     var anos = []
 
     var dataInicio = new Date();
@@ -33,10 +36,9 @@ export function calendarioAnual() {
         var anoAtual = data.getFullYear()
         anos.push({ anoAtual , calendario })
     }
-    console.log(anos)
     return anos
-
 }
+
 
 
 

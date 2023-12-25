@@ -1,7 +1,7 @@
 import "./toDo.css"
 import { ArrayIcons } from "../lists/icons"
-import { anos } from "../chalendar/renderChalendar"
 import { useState, useEffect } from "react"
+import useChalenderInfoContext from "../../hooks/useChalederInfoContext"
 
 var tema = "light"
 
@@ -9,57 +9,63 @@ const nomeDosMeses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "S
 
 
 
-export function ToDo({ func, dataSelecionada }) {
-    console.log(anos)
+export function ToDo() {
+    var { reloadToDoList, setReloadToDoList, isLoaded, dataSelecionadaNoCalendario, calendarioAnual, setPopIsOpen, popIsOpen } = useChalenderInfoContext()
+    var [notasParaSeremRenderizadas, setNotas] = useState([])
 
-    var [notas, setNotas] = useState(["teste1", "teste2"])
+
+
 
 
     useEffect(() => {
-        var novaNota = []
-            anos[dataSelecionada.ano].calendario[dataSelecionada.mes].forEach(element => {
-                if(element.dia == dataSelecionada.dia){
-                    element.notas.forEach((notasDoDia) =>{
-                        novaNota.push(notasDoDia.title)
+        if (isLoaded) {
+
+            var novaNota = []
+            calendarioAnual[dataSelecionadaNoCalendario.ano].calendario[dataSelecionadaNoCalendario.mes].forEach(element => {
+                if (element.dia == dataSelecionadaNoCalendario.dia) {
+                    element.notas.forEach((notasDoDia) => {
+                        novaNota.push(notasDoDia)
 
                     })
+
                 }
             });
-        setNotas(novaNota)
-    }, [dataSelecionada])
-    
+            setNotas(novaNota)
+        }
+    }, [dataSelecionadaNoCalendario, reloadToDoList])
+
+
 
 
 
 
 
     return (
-        <section className="toDoContainer">
-            <article className="toDoHeader">
-                <h1>{`${dataSelecionada.dia} ${nomeDosMeses[dataSelecionada.mes]} ${dataSelecionada.ano + new Date().getFullYear()}`}</h1>
-                <button className="buttonAdd" onClick={() => func()}>+ New Note </button>
-            </article>
-            <ul className="toDoList">
-                {notas.map(element => {return <div>{element}</div>})}
-
-
-                <li className="listItem">
-                    <div>
-                        <h5>text</h5>
-                        <p className="itemDescription">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti numquam dolores quam, veritatis earum laboriosam blanditiis ea sequi nobis laborum debitis ut aperiam dignissimos, illum soluta dolore necessitatibus error deserunt.
-                        </p>
-                    </div>
-                    <div className="itemButtons">
-                        <button className="button"><img className="buttonIcon" src={ArrayIcons.others.symbol[tema].unchecked} /></button>
-                        <button className="button"><img className="buttonIcon" src={ArrayIcons.others.symbol[tema].checked} /></button>
-                    </div>
-                </li>
-
-
-
-
-            </ul>
-        </section>
+        <>
+            {isLoaded ?
+                <section className="toDoContainer">
+                    <article className="toDoHeader">
+                        <h1>{`${dataSelecionadaNoCalendario.dia} ${nomeDosMeses[dataSelecionadaNoCalendario.mes]} ${dataSelecionadaNoCalendario.ano + new Date().getFullYear()}`}</h1>
+                        <button className="buttonAdd" onClick={() => setPopIsOpen(!popIsOpen)}>+ New Note </button>
+                    </article>
+                    <ul className="toDoList">
+                        {notasParaSeremRenderizadas.map(element => {
+                            return (
+                                <li className="listItem">
+                                    <div>
+                                        <h5>{element.title}</h5>
+                                        <p className="itemDescription">{element.description}</p>
+                                    </div>
+                                    <div className="itemButtons">
+                                        <button className="button"><img className="buttonIcon" src={ArrayIcons.others.symbol[tema].unchecked} /></button>
+                                        <button className="button"><img className="buttonIcon" src={ArrayIcons.others.symbol[tema].checked} /></button>
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </section>
+                : <div>loading</div>}
+        </>
     )
 }

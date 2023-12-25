@@ -83,7 +83,7 @@
     font-size: var(--textClamp);
     transition: ease 3s;
 
-    display: none;
+    display: flex;
 }
 
 .itemDescription::-webkit-scrollbar {
