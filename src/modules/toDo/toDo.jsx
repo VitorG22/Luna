@@ -2,6 +2,9 @@ import "./toDo.css"
 import { ArrayIcons } from "../lists/icons"
 import { useState, useEffect } from "react"
 import useChalenderInfoContext from "../../hooks/useChalederInfoContext"
+import ToDoCheckBox from "./toDoItem"
+import ToDoItem from "./toDoItem"
+import ToDoNoNotes from "./toDoNoNotes"
 
 var tema = "light"
 
@@ -31,6 +34,7 @@ export function ToDo() {
                 }
             });
             setNotas(novaNota)
+            console.log(notasParaSeremRenderizadas) 
         }
     }, [dataSelecionadaNoCalendario, reloadToDoList])
 
@@ -43,27 +47,25 @@ export function ToDo() {
     return (
         <>
             {isLoaded ?
-                <section className="toDoContainer">
+                <section className="toDoContainer  overflow-hidden relative shadow-lg shadow-neutral-950/50  rounded-lg  bg-white/[0.002] border border-stone-200/[0.05] p-2 ">
+
+
                     <article className="toDoHeader">
                         <h1>{`${dataSelecionadaNoCalendario.dia} ${nomeDosMeses[dataSelecionadaNoCalendario.mes]} ${dataSelecionadaNoCalendario.ano + new Date().getFullYear()}`}</h1>
-                        <button className="buttonAdd" onClick={() => setPopIsOpen(!popIsOpen)}>+ New Note </button>
+                        <button onClick={() => setPopIsOpen(!popIsOpen)} class="buttonAdd text-emerald-500 border border-emerald-500 rounded-3xl hover:border-emerald-700/0 hover:bg-emerald-500 hover:text-neutral-900 active:bg-neutral-200 active:border-neutral-200 transition duration-500 ease-in-out">+ Nova Nota </button>
                     </article>
-                    <ul className="toDoList">
-                        {notasParaSeremRenderizadas.map(element => {
-                            return (
-                                <li className="listItem">
-                                    <div>
-                                        <h5>{element.title}</h5>
-                                        <p className="itemDescription">{element.description}</p>
-                                    </div>
-                                    <div className="itemButtons">
-                                        <button className="button"><img className="buttonIcon" src={ArrayIcons.others.symbol[tema].unchecked} /></button>
-                                        <button className="button"><img className="buttonIcon" src={ArrayIcons.others.symbol[tema].checked} /></button>
-                                    </div>
-                                </li>
-                            )
-                        })}
-                    </ul>
+                    {notasParaSeremRenderizadas.length == 0 ? (
+                        <ToDoNoNotes />)
+                        : (
+                            <ul className="toDoList">
+                                {notasParaSeremRenderizadas.map((element, index) => {
+                                    return (
+                                        <ToDoItem element={element} index={index} />
+                                    )
+                                })}
+                            </ul>)
+                    }
+
                 </section>
                 : <div>loading</div>}
         </>

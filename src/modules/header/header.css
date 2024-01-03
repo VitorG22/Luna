@@ -7,13 +7,12 @@
     display:flex;
     margin: 2vw;
     align-items:center;
+    justify-content: center;
     box-sizing: border-box;
-    padding:2vh;
 
 
-    border-radius: 5px;
-    background: var(--background_color2);    
-    backdrop-filter: var(--backdropFilter);
+    /* background: var(--background_color2);    
+    backdrop-filter: var(--backdropFilter); */
 }
             
 .headerList{
